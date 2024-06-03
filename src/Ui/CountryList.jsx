@@ -54,7 +54,7 @@ export default function CountryList() {
 
 	return (
 		<div className="country-list-container">
-			{filteredCountries <= 0 && <div className="result-notFound">Country not on the list</div>}
+			{/* {filteredCountries <= 0 && <div className="result-notFound">Country not on the list</div>} */}
 			{filteredCountries?.map((country) => (
 				<CountryCard key={country.cca3} country={country} handleClick={handleClick} />
 			))}
