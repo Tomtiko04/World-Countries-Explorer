@@ -41,7 +41,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [Add solution URL here](https://github.com/Tomtiko04/World-Countries-Explorer)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [Add live site URL here](https://world-countries-explorer.vercel.app/home)
 
 
 ### Built with
@@ -60,7 +60,7 @@ Developing Dark Mode feature
 
 ### Continued development
 
-Adding a loading spinner when content are fetching.
+Adding a loading spinner when contents are fetching.
 
 ## Author
 
