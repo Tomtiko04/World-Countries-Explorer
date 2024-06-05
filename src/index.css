@@ -338,6 +338,13 @@ option {
 	margin-block: 5rem;
 }
 
+.loader{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-block: 3em;
+}
+
 @media screen and (max-width: 400px) {
 	nav {
 		padding-block: 1.5em;

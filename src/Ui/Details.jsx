@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { HiArrowNarrowLeft } from "react-icons/hi";
 import { useDarkMode } from "../context/useDarkMode";
+import Loader from "./Loader";
 
 export default function Details() {
 	const [country, setCountry] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
 	const navigate = useNavigate();
 	const { countryName } = useParams();
 	const { state: DarkMode } = useDarkMode();
@@ -19,6 +21,7 @@ export default function Details() {
 					if (!res.ok) throw new Error("Something went wrong ):");
 					const data = await res.json();
 					setCountry(data);
+					setIsLoading(false);
 				} catch (error) {
 					throw new Error(error.message);
 				}
@@ -48,6 +51,7 @@ export default function Details() {
 					<HiArrowNarrowLeft /> Back
 				</div>
 				{!country && <div>Country details not found on record</div>}
+				{isLoading && <Loader />}
 				{country.map((countryDetails) => (
 					<>
 						<div key={countryDetails?.cca3} className="details-container">
@@ -55,9 +59,7 @@ export default function Details() {
 								<img src={countryDetails?.flags?.png} alt={countryDetails?.name?.common} />
 							</div>
 							<div
-								className={`${
-									!isDarkMode ? "details-container-light" : "details-container-dark"
-								}`}>
+								className={`${!isDarkMode ? "details-container-light" : "details-container-dark"}`}>
 								<h1>{countryDetails?.name.common}</h1>
 								<div className="country-details-info">
 									<div>
@@ -111,7 +113,10 @@ export default function Details() {
 									<ul className="bc-card">
 										{countryDetails.borders
 											? countryDetails.borders.map((border) => (
-													<li className={`${!isDarkMode ? "light" : "dark"}`} key={border} onClick={() => handleBorderClick(border)}>
+													<li
+														className={`${!isDarkMode ? "light" : "dark"}`}
+														key={border}
+														onClick={() => handleBorderClick(border)}>
 														{border}
 													</li>
 											))

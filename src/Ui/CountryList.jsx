@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { useSearch } from "../context/useSearch";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import CountryCard from "./CountryCard";
+import Loader from "./Loader";
 
 export default function CountryList() {
 	
 	const [countries, setCountries] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
 	const { state } = useSearch();
 	
 	const [searchParams] = useSearchParams();
@@ -21,6 +23,7 @@ export default function CountryList() {
 				const data = await res.json();
 				const combinedData = data.flat(Infinity);
 				setCountries(combinedData);
+				setIsLoading(false);
 			} catch (error) {
 				throw new Error(error.message);
 			}
@@ -54,6 +57,7 @@ export default function CountryList() {
 
 	return (
 		<div className="country-list-container">
+			{isLoading && <Loader />}
 			{/* {filteredCountries <= 0 && <div className="result-notFound">Country not on the list</div>} */}
 			{filteredCountries?.map((country) => (
 				<CountryCard key={country.cca3} country={country} handleClick={handleClick} />
