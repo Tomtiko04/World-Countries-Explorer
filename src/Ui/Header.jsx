@@ -1,4 +1,5 @@
 import { IoMoonOutline } from "react-icons/io5";
+import { IoMoonSharp } from "react-icons/io5";
 import { useDarkMode } from "../context/useDarkMode.js";
 import { useNavigate } from "react-router-dom";
 
@@ -22,7 +23,7 @@ export default function Header(){
 				) : (
 					<div className="theme-filter" onClick={() => dispatch({ type: "DISABLE_DARK_MODE" })}>
 						<span>
-							<IoMoonOutline />
+							<IoMoonSharp />
 						</span>
 						<p>Dark Mode</p>
 					</div>
